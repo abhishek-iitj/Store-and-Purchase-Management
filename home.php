@@ -37,7 +37,7 @@ if ($_SESSION['login']==false )
 				    </div>
 
 				    <div class="card-content">
-				      <span class="card-title activator grey-text text-darken-4" align="center"><a href="loanRegister1.php" style="color:#2B8C67;"><b>Loan Register</b></a></span>
+				      <span class="card-title activator grey-text text-darken-4" align="center"><a href="userLoanReg.php" style="color:#2B8C67;"><b>Loan Register</b></a></span>
 				    </div>
            		</div>
       		</div>

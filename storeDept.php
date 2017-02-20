@@ -21,12 +21,10 @@ class StoreDepartment{
 			if((intval($row[2]))<$qty)									//Send to admin here if necessary
 				$storeAdmin->purchase_item($connect, $purchaseObj);
 			else{
-				$this->update_loan_register($connect, $purchaseObj);
+				$this->send_req_to_admin($connect, $purchaseObj);
 			}
 		}
-
 	}
-
 
 	public function update_loan_register($connect, $purchaseObj){
 		$item=$purchaseObj->get_item();
@@ -45,6 +43,8 @@ class StoreDepartment{
 		$qry="INSERT INTO loan_register VALUES('$buyerName', '$buyer', '$item', '$qty', '$pricePerUnit', '$price')";
 		$res=mysqli_query($connect, $qry) or die("Error in updating loan register - 2");
 		echo "\nLOAN REGISTRE UPDATED for ", $buyer;
+		$this->update_store($connect, $purchaseObj);
+
 	}
 
 	public function update_store($connect, $purchaseObj){
@@ -55,8 +55,11 @@ class StoreDepartment{
 		$curQty=0;
 		while($row=mysqli_fetch_array($res)){
 			$curQty=intval($row[2]);
-			
+			$curQty=$curQty-$qty;
 		}
+		$qry="UPDATE store_items SET item_qty='$curQty' WHERE item_name='$item'";
+		$res=mysqli_query($connect, $qry) or die("Error in updating store items.");
+		echo "Store Updated";
 	}
 
 }
