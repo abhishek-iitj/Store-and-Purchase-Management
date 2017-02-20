@@ -1,9 +1,9 @@
 <?php
-class user{
-	private $type;
-	private $LDAP_id;
-	private $LDAP_password;
-
+class User{
+	private $type;				//User's type either faculty, department-in-charge or store admin
+	private $LDAP_id;			//USer's LDAP ID as string
+	private $LDAP_password;		//User's password
+	//Getter setter functions
 	public function setUser($a, $b, $c){
 		$type=$a;
 		$LDAP_id=$b;

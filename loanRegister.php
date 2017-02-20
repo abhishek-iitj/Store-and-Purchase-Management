@@ -13,6 +13,7 @@ $connect=mysqli_connect(SERVER, USER, PASS, DB) or die("error in myql_connect");
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>  
 		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script type="text/javascript" src="js/materialize.min.js"></script>
+      
 	</head>
 	<body>
 		<div class="row" style="background:#2B8C67;">

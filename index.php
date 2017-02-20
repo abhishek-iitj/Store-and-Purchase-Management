@@ -6,14 +6,15 @@ $conn=mysqli_connect(SERVER,USER,PASS,DB)or die("not connect");
 if (isset($_POST['xsub'])){
 	$username=$_POST['xuser'];
 	$password=$_POST['xpass'];
-	//$type=$_POST['xtype'];
+	$type=$_POST['xtype'];
 	//$user=new user();
 	//$user->setUser();
-	$chkqry="select * from users where username='$username' and password='$password'";
-	$res=mysqli_query($conn,$chkqry)or die("not fire check");
-	if(mysqli_affected_rows($conn)>=1)
-	{
-		$row=mysqli_fetch_array($res,MYSQLI_NUM);
+	//$ret=$user->login($username, $password);
+	 $chkqry="select * from users where username='$username' and password='$password'";
+	 $res=mysqli_query($conn,$chkqry)or die("not fire check");
+	 if(mysqli_affected_rows($conn)>=1)
+	 {
+	 	$row=mysqli_fetch_array($res,MYSQLI_NUM);
 		$_SESSION['username']=$row[0];
 		$_SESSION['name']=$row[2];
 		$_SESSION['type']=$row[3];
@@ -53,12 +54,12 @@ if (isset($_POST['xsub'])){
 			<form method="POST">
 				<div class="row">
 					<div class="input-field col s12 l4">
-	          			<input placeholder="User Name" id="first_name" name="xuser" type="text" class="validate">
+	          			<input placeholder="User Name" id="first_name" name="xuser" type="text" required class="validate">
 	        		</div>
 	        	</div>
 	        	<div class="row">
 	        		<div class="input-field col s12 l4">
-	          			<input placeholder="Password" id="first_name" name="xpass" type="password" class="validate">
+	          			<input placeholder="Password" id="first_name" name="xpass" type="password" required class="validate">
 	        		</div>
         		</div>
         		<!-- <div class="row">
