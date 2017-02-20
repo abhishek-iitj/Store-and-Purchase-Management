@@ -1,8 +1,10 @@
 <?php
 session_start();
 include ("constant.php");
-include ("storeDept.php");
+include_once ("storeDept.php");
 include_once("accounts.php");
+include_once("purchaseObj.php");
+include_once("storeAdmin.php");
 $connect=mysqli_connect(SERVER, USER, PASS, DB) or die("error in myql_connect");
 if ($_SESSION['login']==false )
 	header("location:index.php");
@@ -10,19 +12,47 @@ if ($_SESSION['login']==false )
 
 $storeDept=new StoreDepartment;
 $accounts=new AccountsSection;
-
+$storeAdmin=new StoreAdmin;
 
 if (isset($_POST['xsub'])) {
 	$item=$_POST['xitem'];
 	$qty=$_POST['xqty'];
-	echo $item, $qty;
-	$approval=$storeDept->get_Request($accounts, $connect,$item, $qty, $_SESSION['username']);
-	if ($approval==true){
+	//echo $item, $qty;
 
+	//This code evalutes the total amount of the items in the purchase spec froms.
+	$qry1="SELECT * FROM allitems where item_name='$item'";
+	$res=mysqli_query($connect, $qry1) or die("Error in fire inside function");
+	$price=0;
+	while ($row=mysqli_fetch_array($res) ){
+		$price=($qty)*(intval($row['price']));
+	}
+	//echo $price;
+	//Upto Here
+
+	$purchaseObj=new Purchase($item, $qty, $price, $_SESSION['username'], false);	//
+
+	$approval=$storeDept->get_Request($accounts, $connect, $purchaseObj);
+	if ($approval==true){
+		//For each user we will have a notifcation history. 
+		echo '<script language="javascript">';
+		echo 'alert("Purchase request has been approved from Accounts Section.You will get message from store department on process completion.")';
+		echo '</script>';
 	}
 	else{
-		
+		echo '<script language="javascript">';
+		echo 'alert("Insufficient Fund in account. Request Cancelled.")';
+		echo '</script>';
+
 	}
+
+	//Till now budget approval has been covered.
+	if ($purchaseObj->get_status()){
+		echo 1;
+		//To check if the item is avlbl in store or not
+		$storeDept->check_store($connect, $purchaseObj, $storeAdmin);		
+	}
+
+
 }
 ?>
 <!DOCTYPE html>
