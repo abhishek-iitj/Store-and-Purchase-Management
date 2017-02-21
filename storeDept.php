@@ -17,11 +17,15 @@ class StoreDepartment{
 		$qry="SELECT * from store_items WHERE item_name='$item'";
 		//echo $qry;
 		$res=mysqli_query($connect, $qry) or die("Error in validating from store");
-		while($row=mysqli_fetch_array($res)){		
+		while($row=mysqli_fetch_array($res)){
+			echo "available quantitiy";
+			echo $row[2];
+			echo "required Quantitiy";
+			echo $qty;		
 			if((intval($row[2]))<$qty)									//Send to admin here if necessary
-				$storeAdmin->purchase_item($connect, $purchaseObj);
+				$storeAdmin->send_req_to_admin($connect, $purchaseObj);
 			else{
-				$this->send_req_to_admin($connect, $purchaseObj);
+				$this->update_loan_register($connect, $purchaseObj);
 			}
 		}
 	}
