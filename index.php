@@ -6,7 +6,7 @@ $conn=mysqli_connect(SERVER,USER,PASS,DB)or die("not connect");
 if (isset($_POST['xsub'])){
 	$username=$_POST['xuser'];
 	$password=$_POST['xpass'];
-	$type=$_POST['xtype'];
+	//$type=$_POST['xtype'];
 	//$user=new user();
 	//$user->setUser();
 	//$ret=$user->login($username, $password);
@@ -34,6 +34,7 @@ if (isset($_POST['xsub'])){
 	<head>
 		<!-- Compiled and minified CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+		 <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 		<!-- Compiled and minified JavaScript -->
   		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
   		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

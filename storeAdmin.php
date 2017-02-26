@@ -19,14 +19,15 @@ class StoreAdmin{
 		$qty=$purchaseObj->get_qty();
 		$price=$purchaseObj->get_price();
 		$buyer=$purchaseObj->get_buyer();
-		echo "I am in store_incoming_requests";
-		
-		$qry="INSERT INTO store_incoming_requests VALUES('$item', '$qty','$price','$buyer','0')";
+		echo "I am in store_incoming_requests";	
+		$qry="INSERT INTO store_incoming_requests(item_name, item_qty, item_price, userid, processed) VALUES('$item', '$qty','$price','$buyer','0')";
 		$res=mysqli_query($connect, $qry) or die("Error in inserting to store_incoming_requests tables.");
 	}
 
-	public function reply_user(){
-
+	public function reply_user($connect, $purchaseObj){
+		//Fetch the row for that user form store_incoming_request
+		//Process
+		
 	}
 
 	public function get_individual_loan_register(){

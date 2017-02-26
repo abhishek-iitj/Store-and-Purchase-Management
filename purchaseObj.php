@@ -10,7 +10,7 @@ class Purchase{
 		$this->qty=$qty1;
 		$this->price=$price1;
 		$this->buyer=$buyer1;
-		$this->approved=$approved1;
+		$this->approved=$approved1;	
 	}
 
 	public function get_item(){
