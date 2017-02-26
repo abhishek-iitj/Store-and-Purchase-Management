@@ -64,6 +64,7 @@ class StoreDepartment{
 		$qry="UPDATE store_items SET item_qty='$curQty' WHERE item_name='$item'";
 		$res=mysqli_query($connect, $qry) or die("Error in updating store items.");
 		echo "Store Updated";
+		
 	}
 
 }

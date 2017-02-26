@@ -1,27 +1,40 @@
 <?php
 session_start();
-include ("constant.php");
-include("storeAdmin.php");
+include_once("constant.php");
+include_once("storeAdmin.php");
+include_once("storeDept.php");
+include_once("purchaseObj.php");
+
 $connect=mysqli_connect(SERVER, USER, PASS, DB) or die("error in myql_connect");
 
-$storeAdmin= new StoreAdmin;
+
 
 if (isset($_POST['xsub'])){
 	$qry="SELECT * FROM store_incoming_requests where processed = '0'";
 	$res=mysqli_query($connect, $qry) or die("Error in adminApprove.php at line 7");
 	$count=mysqli_num_rows($res);
 	$toApprove=array();
-	for ($x=1; $x<=$count; $x++){
-		if ($_POST[$x]){
-			$y=$x-1;
-			$qry1="SELECT * FROM store_incoming_requests ORDER BY ID LIMIT $y, 1";
+	while ($row=mysqli_fetch_array($res)) {
+		array_push($toApprove, intval($row[0]));
+	}
+	for ($x=0; $x<count($toApprove); $x++){
+		$var=$_POST[$toApprove[$x]];
+		if ($var){
+			$qry1="SELECT * FROM store_incoming_requests WHERE serial=$var";
 			$res=mysqli_query($connect, $qry1) or die("Error in getiing index");	
 			while($row=mysqli_fetch_array($res)){
-				echo $row[0];
-				echo $row[1];
-				echo $row[2];
-				echo $row[3];
-			}
+				$storeAdmin= new StoreAdmin;
+				$storeDept= new StoreDepartment;
+				$purchaseObj= new Purchase($row[1], $row[2], $row[3], $row[4], true);
+				 // echo $row[0];
+				 // echo $row[1];
+				 // echo $row[2];
+				 // echo $row[3];
+				$qryx="UPDATE store_incoming_requests SET processed = '1' where serial=$var";
+				echo $qryx;
+				$resx=mysqli_query($connect, $qryx) or die("Error in adminApprove.php at line 7");
+				$storeAdmin->reply_user($connect, $purchaseObj, $storeDept);
+			}	
 		}
 	}
 }
@@ -57,14 +70,14 @@ if (isset($_POST['xsub'])){
 						$res=mysqli_query($connect, $qry) or die("Error retreiving table store_incoming_requests");
 						$i=1;
 						while ($row=mysqli_fetch_array($res)) {
-							echo "<tr><td>$i</td><td>$row[3]</td><td>$row[0]</td><td>$row[1]</td><td>$row[2]</td><td>
+							echo "<tr><td>$i</td><td>$row[4]</td><td>$row[1]</td><td>$row[2]</td><td>$row[3]</td><td>
 								<p>
-								<input name='$i' type='radio' value='$i'/>
+								<input name='$row[0]' type='radio' value='$row[0]'/>
 								Approve
 								</p>
 								</td></tr>";
-							$i++;
 						}
+						$i++;
 					?>
 				</tbody>
 			</table>

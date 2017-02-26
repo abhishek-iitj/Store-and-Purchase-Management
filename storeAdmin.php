@@ -24,10 +24,23 @@ class StoreAdmin{
 		$res=mysqli_query($connect, $qry) or die("Error in inserting to store_incoming_requests tables.");
 	}
 
-	public function reply_user($connect, $purchaseObj){
+	public function reply_user($connect, $purchaseObj, $storeDept){
 		//Fetch the row for that user form store_incoming_request
-		//Process
-		
+		//processe
+		$item=$purchaseObj->get_item();
+		$price=$purchaseObj->get_price();
+		$qty=$purchaseObj->get_qty();
+
+		$qry="SELECT * FROM store_items WHERE item_name='$item'";
+		$res=mysqli_query($connect, $qry) or die("Error in updatin store by admin");
+		while($row=mysqli_fetch_array($res)){
+			$curQty=intval($row[2]);
+		}
+		$curQty=$curQty+$qty;
+		$qry="UPDATE store_items SET item_qty='$curQty' WHERE item_name='$item'";
+		$res=mysqli_query($connect, $qry) or die("Error in updating store items.");
+		echo "Store Updated";
+		$storeDept->update_loan_register($connect, $purchaseObj);
 	}
 
 	public function get_individual_loan_register(){
