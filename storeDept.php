@@ -47,6 +47,11 @@ class StoreDepartment{
 		$qry="INSERT INTO loan_register VALUES('$buyerName', '$buyer', '$item', '$qty', '$pricePerUnit', '$price')";
 		$res=mysqli_query($connect, $qry) or die("Error in updating loan register - 2");
 		echo "\nLOAN REGISTRE UPDATED for ", $buyer;
+		$message="SUccessfully Purchased : NAME - ".$item." QTY - ".$qty." PRICE - ".$price;
+
+		$qryy="INSERT INTO notification VALUES('$buyerName', '$message')";
+		$resy=mysqli_query($connect, $qryy) or die("Notification insertion error");
+
 		$this->update_store($connect, $purchaseObj);
 
 	}
@@ -64,7 +69,7 @@ class StoreDepartment{
 		$qry="UPDATE store_items SET item_qty='$curQty' WHERE item_name='$item'";
 		$res=mysqli_query($connect, $qry) or die("Error in updating store items.");
 		echo "Store Updated";
-		
+
 	}
 
 }

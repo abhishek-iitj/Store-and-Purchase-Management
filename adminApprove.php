@@ -50,9 +50,9 @@ if (isset($_POST['xsub'])){
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
       <script type="text/javascript" src="js/materialize.min.js"></script>
 	</head>
-	<body>
+	<body style="padding:0px;margin:0px auto;">
 		<div class="row" style="background:#2B8C67;">
-			<p align="center" style="font-size:25px;padding-top:5px;color:white;">Store Page</p>
+			<p align="center" style="font-size:25px;padding:5px;color:white;">Store Page</p>
 		</div>
 		<div class="row"> <p align="center" style="font-size:20px;padding-top:5px;color:#2B8C67;">Incoming Requests</p></div>
 		<form class="container" method="POST">
