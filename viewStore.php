@@ -18,7 +18,7 @@ $connect=mysqli_connect(SERVER, USER, PASS, DB) or die("error in myql_connect");
 		<div class="row" style="background:#2B8C67;">
 			<p align="center" style="font-size:25px;padding-top:5px;color:white;">Store Page</p>
 		</div>
-		<div class="row">
+		<div class="container">
 			 <table class="striped">
 		        <thead>
 		          <tr>

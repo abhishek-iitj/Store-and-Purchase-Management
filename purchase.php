@@ -76,7 +76,9 @@ if (isset($_POST['xsub'])) {
 		</div>
 		<div class="row">
 			<div class="col l4 s12"><p style="color:#2B8C67;font-size:20px;">Welcome : <?php echo $_SESSION['name']?></p>
+			<p style="color:#2B8C67;font-size:20px;">Withstanding Balance(in Rs.) : <?php echo $_SESSION['balance']?></p>
 			</div>
+
 		</div>
 		<div class="container">
 			<p style="color:#2B8C67;font-size:20px;">Purchase Specification Form<a style="color:#2B8C67;font-size:15px;">&nbsp(One item at a time)</a></p>

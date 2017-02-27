@@ -22,12 +22,11 @@ $connect=mysqli_connect(SERVER, USER, PASS, DB) or die("error in myql_connect");
 		<div class="row">
 			<p align="center" style="font-size:15px;padding-top:5px;color:#2B8C67;">Your Loan Register</p>
 		</div>
-		<div class="row">
+		<div class="container">
 			 <table class="striped">
 		        <thead>
 		          <tr>
-		              <th >Name</th>
-		              <th >User ID</th>
+		          
 		              <th >Item Name</th>
 		              <th >Item Quantity</th>
 		              <th >Item Price</th>
@@ -41,7 +40,7 @@ $connect=mysqli_connect(SERVER, USER, PASS, DB) or die("error in myql_connect");
 		         	$qry="SELECT * FROM loan_register WHERE userid='$id'";
 		         	$res=mysqli_query($connect, $qry);
 					while($arr=mysqli_fetch_array($res)){
-						echo"<tr><td>$arr[0]</td><td>$arr[1]</td><td>$arr[2]</td><td>$arr[3]</td><td>$arr[4]</td><td>$arr[5]</td></tr>";
+						echo"<tr><td>$arr[2]</td><td>$arr[3]</td><td>$arr[4]</td><td>$arr[5]</td></tr>";
 					}
 
 		         ?>

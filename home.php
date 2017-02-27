@@ -23,6 +23,7 @@ if ($_SESSION['login']==false )
 		</div>
 		<div class="row">
 			<div class="col l4 s12"><p style="color:#2B8C67;font-size:20px;">Welcome : <?php echo $_SESSION['name']?></p>
+			<p style="color:#2B8C67;font-size:20px;">Withstanding Balance(in Rs.) : <?php echo $_SESSION['balance']?></p>
 			</div>
 			<div class="col l4 s12"></div>
 			<div class="col l4 s12"><a class="waves-effect waves-light btn" href="logout.php">Logout</a></div>

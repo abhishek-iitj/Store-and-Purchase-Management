@@ -19,6 +19,7 @@ if (isset($_POST['xsub'])){
 		$_SESSION['name']=$row[2];
 		$_SESSION['type']=$row[3];
 		$_SESSION['login']=true;
+		$_SESSION['balance']=$row[4];
 		if ($_SESSION['type']=="Admin") 	
 			header("location:adminHome.php");
 		else
