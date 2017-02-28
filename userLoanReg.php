@@ -31,7 +31,8 @@ $connect=mysqli_connect(SERVER, USER, PASS, DB) or die("error in myql_connect");
 			 <table class="striped" id="myTable">
 		        <thead>
 		          <tr>
-		          
+		          	
+		              <th >Sl. NO</th>
 		              <th >Item Name</th>
 		              <th >Item Quantity</th>
 		              <th >Item Price</th>
@@ -42,11 +43,13 @@ $connect=mysqli_connect(SERVER, USER, PASS, DB) or die("error in myql_connect");
 
 		        <tbody>
 		         <?php
+		         	$i=1;
 		         	$id=$_SESSION['username'];
 		         	$qry="SELECT * FROM loan_register WHERE userid='$id'";
 		         	$res=mysqli_query($connect, $qry);
 					while($arr=mysqli_fetch_array($res)){
-						echo"<tr><td>$arr[2]</td><td>$arr[3]</td><td>$arr[4]</td><td>$arr[5]</td><td>$arr[6]</td></tr>";
+						echo"<tr><td>$i</td><td>$arr[2]</td><td>$arr[3]</td><td>$arr[4]</td><td>$arr[5]</td><td>$arr[6]</td></tr>";
+						$i++;
 					}
 
 		         ?>

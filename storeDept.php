@@ -50,7 +50,7 @@ class StoreDepartment{
 		echo "\nLOAN REGISTER UPDATED for ", $buyer;
 		$message="Sucessfully Purchased : ITEM NAME - ".$item." QTY - ".$qty." PRICE - ".$price;
 		$userid=$_SESSION['username'];
-		$qryy="INSERT INTO notification VALUES('$userid', '$message')";
+		$qryy="INSERT INTO notification VALUES('$buyerName', '$message')";
 		$resy=mysqli_query($connect, $qryy) or die("Notification insertion error");
 
 		echo '<script language="javascript">';

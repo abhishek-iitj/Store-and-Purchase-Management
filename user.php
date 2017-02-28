@@ -6,15 +6,15 @@ class User{
 	//Getter setter functions
 
 	public function __construct($id, $pass){
-		$LDAP_id=$id;
-		$LDAP_password=$pass;
+		$this->LDAP_id=$id;
+		$this->LDAP_password=$pass;
 	}
 
 	public function getLDAP_id(){
-		return $LDAP_id;
+		return $this->LDAP_id;
 	}
 	public function getLDAP_password(){
-		return $LDAP_password;
+		return $this->LDAP_password;
 	}
 
 	public function login($connect, $username, $password){
@@ -40,6 +40,12 @@ class User{
 	      	echo '</script>';
 		}
 	}
-
+	// public function logout(){
+	// 	$_SESSION['login']=false;
+	// 	unset($_SESSION['username']);
+	// 	unset($_SESSION['password']);
+	// 	header("location:index.php");
+	// 	return true;
+	// }
 }
 ?>

@@ -1,9 +1,11 @@
 <?php
 session_start();
+include ('user.php');
 include ("constant.php");
 $connect=mysqli_connect(SERVER, USER, PASS, DB) or die("error in myql_connect");
 if ($_SESSION['login']==false )
 	header("location:index.php");
+$user=new User($_SESSION['username'], $_SESSION['password']);
 ?>
 <html>
 	<head>
@@ -34,7 +36,7 @@ if ($_SESSION['login']==false )
 				  <form>
 				    <table>
 				    <?php
-					    $id=$_SESSION['username'];
+					    $id=$_SESSION['name'];
 					    $qryz="Select * from notification where userid='$id'";
 					    $resz=mysqli_query($connect, $qryz) or die("Error in home.php line 38");
 					    $count=mysqli_num_rows($resz);
@@ -77,7 +79,7 @@ if ($_SESSION['login']==false )
 				      <img class="activator" href="purchase.php" src="images/office.jpg" >
 				    </div>
 				    <div class="card-content">
-				      <span class="card-title activator grey-text text-darken-4" align="center"><a href="purchase.php" style="color:#2B8C67;"><b>Puchase</b></a></span>
+				      <span class="card-title activator grey-text text-darken-4" align="center"><a href="purchase.php" style="color:#2B8C67;"><b>Purchase</b></a></span>
 				    </div>
 
            		</div>

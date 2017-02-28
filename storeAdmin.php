@@ -1,6 +1,17 @@
 <?php
 class StoreAdmin{
 
+	public function purchase_item($connect, $purchaseObj){
+		$qty=$purchaseObj->get_qty();
+		$item=$purchaseObj->get_item();
+		$qry="SELECT * FROM store_items WHERE item_name='$item'";
+		$res= mysqli_query($connect,$qry) or die("Error in query fire inside function purchase_item");
+		$arr=mysqli_fetch_array($res);	
+		$qty=$qty+$arr[2];
+		$qry1="UPDATE store_items SET item_qty='$qty' WHERE item_name='$item'";
+		$res1= mysqli_query($connect,$qry1) or die("Error in query fire inside function purchase_item");
+	}
+
 	public function send_req_to_admin($connect, $purchaseObj){
 		//This method will put the purchase request to be viewed and processed by the store Admin.
 		//Puts the data to the store_incoming_requests table

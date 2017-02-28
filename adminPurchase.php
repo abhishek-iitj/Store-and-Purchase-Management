@@ -11,8 +11,6 @@
 	if(isset($_POST['xsub'])){
 		$item1=$_POST['xitem'];
 		$qty1=$_POST['xqty'];
-		$qry1="UPDATE store_items SET item_qty = item_qty +'$qty1' WHERE item_name='$item1'";
-		$res=mysqli_query($connect,$qry1) or die("Error in fire inside function");
 		$storeAdmin=new StoreAdmin;
 
 		$qry2="SELECT * FROM store_items WHERE item_name ='$item1'";
