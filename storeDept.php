@@ -44,10 +44,11 @@ class StoreDepartment{
 			$buyerName=$row[2];
 		}
 		$pricePerUnit=(intval($price))/(intval($qty));
-		$qry="INSERT INTO loan_register VALUES('$buyerName', '$buyer', '$item', '$qty', '$pricePerUnit', '$price')";
+		$date = date('d-m-Y');
+		$qry="INSERT INTO loan_register VALUES('$buyerName', '$buyer', '$item', '$qty', '$pricePerUnit', '$price', '$date')";
 		$res=mysqli_query($connect, $qry) or die("Error in updating loan register - 2");
-		echo "\nLOAN REGISTRE UPDATED for ", $buyer;
-		$message="SUccessfully Purchased : NAME - ".$item." QTY - ".$qty." PRICE - ".$price;
+		echo "\nLOAN REGISTER UPDATED for ", $buyer;
+		$message="Sucessfully Purchased : ITEM NAME - ".$item." QTY - ".$qty." PRICE - ".$price;
 		$userid=$_SESSION['username'];
 		$qryy="INSERT INTO notification VALUES('$userid', '$message')";
 		$resy=mysqli_query($connect, $qryy) or die("Notification insertion error");

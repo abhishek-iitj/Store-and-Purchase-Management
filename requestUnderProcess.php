@@ -28,7 +28,6 @@ if($_SESSION['login']==false){
 		        <thead>
 		          <tr>
 		              	<th>Sl. No.</th>
-						<th>Buyer ID</th>
 						<th>Item Name</th>
 						<th>Quantity</th>
 						<th>Total Price</th>
@@ -38,10 +37,12 @@ if($_SESSION['login']==false){
 		        <tbody>
 		         <?php
 		         	$id=$_SESSION['username'];
-		         	$qry="SELECT * FROM store_incoming_requests WHERE userid='$id'";
+		         	$qry="SELECT * FROM store_incoming_requests WHERE userid='$id' AND processed='0'";
 		         	$res=mysqli_query($connect, $qry) or die("Error in firing query inside table");
+		         	$i=1;
 					while($arr=mysqli_fetch_array($res)){
-						echo"<tr><td>$arr[0]</td><td>$arr[4]</td><td>$arr[1]</td><td>$arr[2]</td><td>$arr[3]</td><td>";
+						echo"<tr><td>$i</td><td>$arr[1]</td><td>$arr[2]</td><td>$arr[3]</td><td>";
+						$i++;
 					}
 
 		         ?>

@@ -34,6 +34,8 @@ $connect=mysqli_connect(SERVER, USER, PASS, DB) or die("error in myql_connect");
 		              <th >Item Quantity</th>
 		              <th >Item Price</th>
 		              <th >Amount Used</th>
+		              <th >Date</th>
+
 		          </tr>
 		        </thead>
 
@@ -42,7 +44,7 @@ $connect=mysqli_connect(SERVER, USER, PASS, DB) or die("error in myql_connect");
 		         	$result = mysqli_query( $connect, "SELECT * FROM loan_register");
 					while($arr=mysqli_fetch_array($result)){
 						$var=$arr[0];
-						echo"<tr><td>$arr[0]</td><td>$arr[1]</td><td>$arr[2]</td><td>$arr[3]</td><td>$arr[4]</td><td>$arr[5]</td></tr>";
+						echo"<tr><td>$arr[0]</td><td>$arr[1]</td><td>$arr[2]</td><td>$arr[3]</td><td>$arr[4]</td><td>$arr[5]</td><td>$arr[6]</td></tr>";
 					}
 
 		         ?>
