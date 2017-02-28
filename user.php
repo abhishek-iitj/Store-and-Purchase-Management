@@ -1,4 +1,5 @@
 <?php
+include_once('purchaseObj.php');
 class User{
 	//private $type;				//User's type either faculty, department-in-charge or store admin
 	private $LDAP_id;			//USer's LDAP ID as string
@@ -39,6 +40,11 @@ class User{
 	      	echo 'alert("Invalid Credentital")';
 	      	echo '</script>';
 		}
+	}
+
+	public function purchase_item($connect, $item, $qty, $price, $user){
+		$purchaseObj=new Purchase($item, $qty, $price, $user, false);	//
+		return $purchaseObj;
 	}
 	// public function logout(){
 	// 	$_SESSION['login']=false;

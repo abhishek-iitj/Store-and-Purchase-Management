@@ -5,6 +5,7 @@ include_once ("storeDept.php");
 include_once("accounts.php");
 include_once("purchaseObj.php");
 include_once("storeAdmin.php");
+include_once("user.php");
 $connect=mysqli_connect(SERVER, USER, PASS, DB) or die("error in myql_connect");
 if ($_SESSION['login']==false )
 	header("location:index.php");
@@ -13,6 +14,7 @@ if ($_SESSION['login']==false )
 $storeDept=new StoreDepartment;
 $accounts=new AccountsSection;
 $storeAdmin=new StoreAdmin;
+$user=new User($_SESSION['username'], $_SESSION['password']);
 
 if (isset($_POST['xsub'])) {
 	$item=$_POST['xitem'];
@@ -29,7 +31,9 @@ if (isset($_POST['xsub'])) {
 	//echo $price;
 	//Upto Here
 
-	$purchaseObj=new Purchase($item, $qty, $price, $_SESSION['username'], false);	//
+	$purchaseObj=$user->purchase_item($connect, $item, $qty, $price, $_SESSION['username']);
+
+	//$purchaseObj=new Purchase($item, $qty, $price, $_SESSION['username'], false);	//
 
 	$approval=$storeDept->get_Request($accounts, $connect, $purchaseObj);
 	if ($approval==true){
