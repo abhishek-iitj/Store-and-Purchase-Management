@@ -6,6 +6,25 @@ $connect=mysqli_connect(SERVER, USER, PASS, DB) or die("error in myql_connect");
 if ($_SESSION['login']==false )
 	header("location:index.php");
 $user=new User($_SESSION['username'], $_SESSION['password']);
+$id=$_SESSION['name'];
+
+
+
+if(isset($_POST['xsub']))
+{
+	$qry="DELETE FROM notification WHERE 1";
+	$res=mysqli_query($connect,$qry) or die("Error in firing query for deleting notifications");
+}
+$qryz="Select * from notification where userid='$id'";
+$resz=mysqli_query($connect, $qryz) or die("Error in home.php line 38");
+$count=mysqli_num_rows($resz);
+if ($count!=0){
+	echo '<script language="javascript">';
+	echo 'alert("New Notifiaction(s)!")';
+	echo '</script>';
+		}
+
+
 ?>
 <html>
 	<head>
@@ -33,7 +52,7 @@ $user=new User($_SESSION['username'], $_SESSION['password']);
 				<div id="modal1" class="modal">
 			  	<!-- Modal content -->
 				  <div  class="modal-content">
-				  <form>
+				  <form method='post' action='#'>
 				    <table>
 				    <?php
 					    $id=$_SESSION['name'];
@@ -48,6 +67,7 @@ $user=new User($_SESSION['username'], $_SESSION['password']);
 					    		echo "<tr><td>$row[1]</td></tr>";
 					    	}
 					    }
+					    echo "<input type='submit' name='xsub' value='Clear All'>";
 				    ?>
 				    </table>
 				    </form> 

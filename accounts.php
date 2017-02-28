@@ -25,11 +25,9 @@ class AccountsSection{
 					$curBalance=intval($userRow[4]);
 					$curBalance=$curBalance-$price;
 					$_SESSION['balance']=$curBalance;
-					echo "Balance Fetched\n";
 				}
 				$qry0="UPDATE users SET balance='$curBalance' WHERE username='$buyer'";
 				$res0=mysqli_query($connect, $qry0) or die("Error in updating balance");
-				echo "Balance Updated\n";
 				return true;
 			}
 		}

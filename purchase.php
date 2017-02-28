@@ -50,14 +50,12 @@ if (isset($_POST['xsub'])) {
 	}
 	//Till now budget approval has been covered.
 	if ($purchaseObj->get_status()){
-		echo 1;
 		//To check if the item is avlbl in store or not
 		$storeDept->check_store($connect, $purchaseObj, $storeAdmin);		
 	}
-
-
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 	<head>

@@ -18,12 +18,16 @@ class StoreDepartment{
 		//echo $qry;
 		$res=mysqli_query($connect, $qry) or die("Error in validating from store");
 		while($row=mysqli_fetch_array($res)){
-			echo "available quantitiy";
-			echo $row[2];
-			echo "required Quantitiy";
-			echo $qty;		
-			if((intval($row[2]))<$qty)									//Send to admin here if necessary
-				$storeAdmin->send_req_to_admin($connect, $purchaseObj);
+			//echo "available quantitiy";
+			//echo $row[2];
+			//echo "required Quantitiy";
+			//echo $qty;		
+			if((intval($row[2]))<$qty){
+				echo '<script language="javascript">';
+				echo 'alert("Item unavailable in the Store. You will be notified in the Notifications tab once the purchase request is successfully completed.")';
+				echo '</script>';
+				$storeAdmin->send_req_to_admin($connect, $purchaseObj); //Send to admin here if necessary
+			}						
 			else{
 				$this->update_loan_register($connect, $purchaseObj);
 			}
@@ -37,7 +41,7 @@ class StoreDepartment{
 		$buyer=$purchaseObj->get_buyer();		//LDAP ID of the USER
 
 		$buyerName="";			//Name of the buyer. To be found from table :) 
-		echo $buyer;
+		//echo $buyer;
 		$qry="SELECT * FROM users WHERE username='$buyer'";
 		$res=mysqli_query($connect, $qry) or die("Error in update_loan_register function - 1");
 		while($row=mysqli_fetch_array($res)){
@@ -47,16 +51,11 @@ class StoreDepartment{
 		$date = date('d-m-Y');
 		$qry="INSERT INTO loan_register VALUES('$buyerName', '$buyer', '$item', '$qty', '$pricePerUnit', '$price', '$date')";
 		$res=mysqli_query($connect, $qry) or die("Error in updating loan register - 2");
-		echo "\nLOAN REGISTER UPDATED for ", $buyer;
+		//echo "\nLOAN REGISTER UPDATED for ", $buyer;
 		$message="Sucessfully Purchased : ITEM NAME - ".$item." QTY - ".$qty." PRICE - ".$price;
 		$userid=$_SESSION['username'];
-		$qryy="INSERT INTO notification VALUES('$buyerName', '$message')";
-		$resy=mysqli_query($connect, $qryy) or die("Notification insertion error");
-
-		echo '<script language="javascript">';
-		echo 'alert("Purchase Sucessfull. Loan Register Updated")';
-		echo '</script>';
-
+		// $qryy="INSERT INTO notification VALUES('$buyerName', '$message')";
+		// $resy=mysqli_query($connect, $qryy) or die("Notification insertion error");
 		$this->update_store($connect, $purchaseObj);
 
 	}
@@ -73,7 +72,9 @@ class StoreDepartment{
 		}
 		$qry="UPDATE store_items SET item_qty='$curQty' WHERE item_name='$item'";
 		$res=mysqli_query($connect, $qry) or die("Error in updating store items.");
-		echo "Store Updated";
+		echo '<script language="javascript">';
+		echo 'alert("Purchase Sucessful. Loan Register Updated. Store Updated")';
+		echo '</script>';
 
 	}
 

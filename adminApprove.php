@@ -14,9 +14,20 @@ if (isset($_POST['xsub'])){
 	$res=mysqli_query($connect, $qry) or die("Error in adminApprove.php at line 7");
 	$count=mysqli_num_rows($res);
 	$toApprove=array();
+	$sum=0;
 	while ($row=mysqli_fetch_array($res)) {
 		array_push($toApprove, intval($row[0]));
 	}
+	for ($x=0; $x<count($toApprove); $x++)
+	{
+		if(isset($_POST[$toApprove[$x]]))
+		{
+			$sum++;
+		}
+	}
+	if($sum>0)
+	//Handle exception if user directly submits rather than selecting at least one radio button
+	{
 	for ($x=0; $x<count($toApprove); $x++){
 		$var=$_POST[$toApprove[$x]];
 		if ($var){
@@ -31,11 +42,12 @@ if (isset($_POST['xsub'])){
 				 // echo $row[2];
 				 // echo $row[3];
 				$qryx="UPDATE store_incoming_requests SET processed = '1' where serial=$var";
-				echo $qryx;
+				//echo $qryx;
 				$resx=mysqli_query($connect, $qryx) or die("Error in adminApprove.php at line 7");
 				$storeAdmin->reply_user($connect, $purchaseObj, $storeDept);
 			}	
 		}
+	}
 	}
 }
 ?>

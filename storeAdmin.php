@@ -20,7 +20,6 @@ class StoreAdmin{
 		$price=$purchaseObj->get_price();
 		$buyer=$purchaseObj->get_buyer();
 		$date = date('d-m-Y');
-		echo "I am in store_incoming_requests";	
 		$qry="INSERT INTO store_incoming_requests(item_name, item_qty, item_price, userid, processed) VALUES('$item', '$qty','$price','$buyer','0')";
 		$res=mysqli_query($connect, $qry) or die("Error in inserting to store_incoming_requests tables.");
 	}
@@ -31,16 +30,29 @@ class StoreAdmin{
 		$item=$purchaseObj->get_item();
 		$price=$purchaseObj->get_price();
 		$qty=$purchaseObj->get_qty();
+		$buyer=$purchaseObj->get_buyer();		//LDAP ID of the USER
+
+		$buyerName="";			//Name of the buyer. To be found from table :) 
+		//echo $buyer;
+		$qry="SELECT * FROM users WHERE username='$buyer'";
+		$res=mysqli_query($connect, $qry) or die("Error in update_loan_register function - 1");
+		while($row=mysqli_fetch_array($res)){
+			$buyerName=$row[2];
+		}
 
 		$qry="SELECT * FROM store_items WHERE item_name='$item'";
 		$res=mysqli_query($connect, $qry) or die("Error in updatin store by admin");
 		while($row=mysqli_fetch_array($res)){
 			$curQty=intval($row[2]);
 		}
-		$curQty=$curQty+$qty;
+		$curQty=$curQty+($qty-$curQty);
 		$qry="UPDATE store_items SET item_qty='$curQty' WHERE item_name='$item'";
 		$res=mysqli_query($connect, $qry) or die("Error in updating store items.");
-		echo "Store Updated";
+		$message="Sucessfully Purchased : ITEM NAME - ".$item." QTY - ".$qty." PRICE - ".$price;
+		
+		$qryy="INSERT INTO notification VALUES('$buyerName', '$message')";
+		$resy=mysqli_query($connect, $qryy) or die("Notification insertion error");
+
 		$storeDept->update_loan_register($connect, $purchaseObj);
 	}
 
