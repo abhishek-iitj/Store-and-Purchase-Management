@@ -3,7 +3,8 @@ session_start();
 include ("constant.php");
 $connect=mysqli_connect(SERVER, USER, PASS, DB) or die("error in myql_connect");
 
-
+if ($_SESSION['login']==false )
+	header("location:index.php");
 ?>
 <html>
 	<head>

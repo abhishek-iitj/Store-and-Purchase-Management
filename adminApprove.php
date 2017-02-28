@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 include_once("constant.php");
 include_once("storeAdmin.php");
 include_once("storeDept.php");
@@ -7,7 +8,8 @@ include_once("purchaseObj.php");
 
 $connect=mysqli_connect(SERVER, USER, PASS, DB) or die("error in myql_connect");
 
-
+if ($_SESSION['login']==false )
+	header("location:index.php");
 
 if (isset($_POST['xsub'])){
 	$qry="SELECT * FROM store_incoming_requests where processed = '0'";
