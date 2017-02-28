@@ -48,9 +48,13 @@ class StoreDepartment{
 		$res=mysqli_query($connect, $qry) or die("Error in updating loan register - 2");
 		echo "\nLOAN REGISTRE UPDATED for ", $buyer;
 		$message="SUccessfully Purchased : NAME - ".$item." QTY - ".$qty." PRICE - ".$price;
-
-		$qryy="INSERT INTO notification VALUES('$buyerName', '$message')";
+		$userid=$_SESSION['username'];
+		$qryy="INSERT INTO notification VALUES('$userid', '$message')";
 		$resy=mysqli_query($connect, $qryy) or die("Notification insertion error");
+
+		echo '<script language="javascript">';
+		echo 'alert("Purchase Sucessfull. Loan Register Updated")';
+		echo '</script>';
 
 		$this->update_store($connect, $purchaseObj);
 

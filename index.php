@@ -1,5 +1,5 @@
 <?php
-include 'user.php';
+include_once('user.php');
 session_start();
 include("constant.php");
 $conn=mysqli_connect(SERVER,USER,PASS,DB)or die("not connect");
@@ -7,27 +7,28 @@ if (isset($_POST['xsub'])){
 	$username=$_POST['xuser'];
 	$password=$_POST['xpass'];
 	//$type=$_POST['xtype'];
-	//$user=new user();
-	//$user->setUser();
-	//$ret=$user->login($username, $password);
-	 $chkqry="select * from users where username='$username' and password='$password'";
-	 $res=mysqli_query($conn,$chkqry)or die("not fire check");
-	 if(mysqli_affected_rows($conn)>=1)
-	 {
-	 	$row=mysqli_fetch_array($res,MYSQLI_NUM);
-		$_SESSION['username']=$row[0];
-		$_SESSION['name']=$row[2];
-		$_SESSION['type']=$row[3];
-		$_SESSION['login']=true;
-		$_SESSION['balance']=$row[4];
-		if ($_SESSION['type']=="Admin") 	
-			header("location:adminHome.php");
-		else
-			header("location:home.php");
+	$user=new user($username, $password);
+	$user->login($conn, $username, $password);
+	// //$ret=$user->login($username, $password);
+	// $chkqry="select * from users where username='$username' and password='$password'";
+	// $res=mysqli_query($conn,$chkqry)or die("not fire check");
+	//  if(mysqli_affected_rows($conn)>=1)
+	//  {
+	//  	$row=mysqli_fetch_array($res,MYSQLI_NUM);
+	// 	$_SESSION['username']=$row[0];
+	// 	$_SESSION['name']=$row[2];
+	// 	$_SESSION['type']=$row[3];
+	// 	$_SESSION['password']=$row[1];
+	// 	$_SESSION['login']=true;
+	// 	$_SESSION['balance']=$row[4];
+	// 	if ($_SESSION['type']=="Admin") 	
+	// 		header("location:adminHome.php");
+	// 	else
+	// 		header("location:home.php");
 
-	}
-	else	
-		$xlogm="<font color='red'>INVALID CREDENTIALS</font>";
+	// }
+	// else	
+	// 	$xlogm="<font color='red'>INVALID CREDENTIALS</font>";
 }
 ?>
 

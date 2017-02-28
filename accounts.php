@@ -24,6 +24,7 @@ class AccountsSection{
 				while($userRow=mysqli_fetch_array($res)){
 					$curBalance=intval($userRow[4]);
 					$curBalance=$curBalance-$price;
+					$_SESSION['balance']=$curBalance;
 					echo "Balance Fetched\n";
 				}
 				$qry0="UPDATE users SET balance='$curBalance' WHERE username='$buyer'";

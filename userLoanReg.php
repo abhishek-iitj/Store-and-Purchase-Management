@@ -22,8 +22,13 @@ $connect=mysqli_connect(SERVER, USER, PASS, DB) or die("error in myql_connect");
 		<div class="row">
 			<p align="center" style="font-size:15px;padding-top:5px;color:#2B8C67;">Your Loan Register</p>
 		</div>
+		<div class="container"> 
+
+			<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search any keyword.." title="Type in a name">
+
+		</div>
 		<div class="container">
-			 <table class="striped">
+			 <table class="striped" id="myTable">
 		        <thead>
 		          <tr>
 		          
@@ -47,5 +52,30 @@ $connect=mysqli_connect(SERVER, USER, PASS, DB) or die("error in myql_connect");
 		        </tbody>
       		</table>
 		</div>
+
+		<script>
+		function myFunction() {
+		  	var input, filter, found, table, tr, td, i, j;
+		    input = document.getElementById("myInput");
+		    filter = input.value.toUpperCase();
+		    table = document.getElementById("myTable");
+		    tr = table.getElementsByTagName("tr");
+		    for (i = 0; i < tr.length; i++) {
+		        td = tr[i].getElementsByTagName("td");
+		        for (j = 0; j < td.length; j++) {
+		            if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+		                found = true;
+		            }
+		        }
+		        if (found) {
+		            tr[i].style.display = "";
+		            found = false;
+		        } else {
+		            tr[i].style.display = "none";
+		        }
+		    }
+		}
+	</script>
+
 	</body>
 </html>

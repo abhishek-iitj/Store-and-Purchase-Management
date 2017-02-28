@@ -1,26 +1,30 @@
 <?php
-session_start();
-include ("constant.php");
-include_once("purchaseObj.php");
-include_once("storeAdmin.php");
-$connect=mysqli_connect(SERVER, USER, PASS, DB) or die("error in myql_connect");
+	session_start();
+	include ("constant.php");
+	include_once("purchaseObj.php");
+	include_once("storeAdmin.php");
+	$connect=mysqli_connect(SERVER, USER, PASS, DB) or die("error in myql_connect");
 
-if ($_SESSION['login']==false )
-	header("location:index.php");
-	
-if(isset($_POST['xsub'])){
-	$item1=$_POST['xitem'];
-	$qty1=$_POST['xqty'];
-	$qry1="UPDATE store_items SET item_qty = item_qty +'$qty1' WHERE item_name='$item1'";
-	$res=mysqli_query($connect,$qry1) or die("Error in fire inside function");
-	$storeAdmin=new StoreAdmin;
+	if ($_SESSION['login']==false )
+		header("location:index.php");
+		
+	if(isset($_POST['xsub'])){
+		$item1=$_POST['xitem'];
+		$qty1=$_POST['xqty'];
+		$qry1="UPDATE store_items SET item_qty = item_qty +'$qty1' WHERE item_name='$item1'";
+		$res=mysqli_query($connect,$qry1) or die("Error in fire inside function");
+		$storeAdmin=new StoreAdmin;
 
-	$qry2="SELECT * FROM store_items WHERE item_name ='$item1'";
-	$res1=mysqli_query($connect,$qry2) or die("Error in fire inside function");
-	$arr=mysqli_fetch_array($res1,MYSQLI_NUM);
-	$price1=$arr[1]*$qty1;
-	$PurchaseObj=new Purchase($item1, $qty1, $price1, "pradhan.1", true);//admin=pradhan.1
-	$storeAdmin->purchase_item($connect,$PurchaseObj);
+		$qry2="SELECT * FROM store_items WHERE item_name ='$item1'";
+		$res1=mysqli_query($connect,$qry2) or die("Error in fire inside function");
+		$arr=mysqli_fetch_array($res1,MYSQLI_NUM);
+		$price1=$arr[1]*$qty1;
+		$PurchaseObj=new Purchase($item1, $qty1, $price1, "pradhan.1", true);//admin=pradhan.1
+		$storeAdmin->purchase_item($connect,$PurchaseObj);
+
+		echo '<script language="javascript">';
+		echo 'alert("Purchase Department has successfully purchased.")';
+		echo '</script>';
 }	
 
 ?>
@@ -58,12 +62,12 @@ if(isset($_POST['xsub'])){
 					<div class=" input-field col s12 m12 l6">
 	          			  <select name="xitem">
 						      	<?php
-									$qry="SELECT * FROM allitems order by item_name ";
+									$qry="SELECT * FROM store_items order by item_name";
 							    	$res=mysqli_query($connect, $qry);
 
 							    	while ($row=mysqli_fetch_array($res) ){
 							    		$var=$row["item_name"];
-   										echo "<option value='$var'>".htmlspecialchars($row["item_name"])." (Price per qty:".$row['price'].")"."</option>";
+   										echo "<option value='$var'>".htmlspecialchars($row["item_name"])." (Price per qty:".$row['item_price'].")"."</option>";
 									}
 						      	?>
 						    </select>

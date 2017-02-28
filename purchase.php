@@ -20,11 +20,11 @@ if (isset($_POST['xsub'])) {
 	//echo $item, $qty;
 
 	//This code evalutes the total amount of the items in the purchase spec froms.
-	$qry1="SELECT * FROM allitems where item_name='$item'";
+	$qry1="SELECT * FROM store_items where item_name='$item'";
 	$res=mysqli_query($connect, $qry1) or die("Error in fire inside function");
 	$price=0;
 	while ($row=mysqli_fetch_array($res) ){
-		$price=($qty)*(intval($row['price']));
+		$price=($qty)*(intval($row['item_price']));
 	}
 	//echo $price;
 	//Upto Here
@@ -62,7 +62,7 @@ if (isset($_POST['xsub'])) {
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
 		<!-- Compiled and minified JavaScript -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script> 
-		
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	  	<script type="text/javascript" src="js/materialize.min.js"></script> 
@@ -76,8 +76,10 @@ if (isset($_POST['xsub'])) {
 		</div>
 		<div class="row">
 			<div class="col l4 s12"><p style="color:#2B8C67;font-size:20px;">Welcome : <?php echo $_SESSION['name']?></p>
-			<p style="color:#2B8C67;font-size:20px;">Withstanding Balance(in Rs.) : <?php echo $_SESSION['balance']?></p>
+			<p style="color:#2B8C67;font-size:20px;">Balance(in Rs.) : <?php echo $_SESSION['balance']?></p>
 			</div>
+			<div class="col l4"></div>
+			<div class="col l4"><a href="home.php" style="color:#2B8C67;"> <i class="medium material-icons">home</i></a></div>
 
 		</div>
 		<div class="container">
@@ -88,12 +90,12 @@ if (isset($_POST['xsub'])) {
 					<div class=" input-field col s12 m12 l6">
 	          			  <select name="xitem">
 						      	<?php
-								$qry="SELECT * FROM allitems order by item_name";
+								$qry="SELECT * FROM store_items order by item_name";
 							    $res=mysqli_query($connect, $qry);
 
 							    while ($row=mysqli_fetch_array($res) ){
 							    		$var=$row["item_name"];
-   										echo "<option value='$var'>".htmlspecialchars($row["item_name"])." (Price per qty:".$row['price'].")"."</option>";
+   										echo "<option value='$var'>".htmlspecialchars($row["item_name"])." (Price per qty:".$row['item_price'].")"."</option>";
 									}
 						      ?>
 						    </select>
