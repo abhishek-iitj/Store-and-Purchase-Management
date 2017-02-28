@@ -10,21 +10,17 @@ class User{
 		$LDAP_password=$pass;
 	}
 
-	// public function getType(){
-	// 	return $type;
-	// }
-
 	public function getLDAP_id(){
 		return $LDAP_id;
 	}
 	public function getLDAP_password(){
 		return $LDAP_password;
 	}
+
 	public function login($connect, $username, $password){
 		$chkqry="select * from users where username='$username' and password='$password'";
 		$res=mysqli_query($connect,$chkqry)or die("not fire check");
-		 if(mysqli_affected_rows($connect)>=1)
-		 {
+		 if(mysqli_affected_rows($connect)>=1){
 		 	$row=mysqli_fetch_array($res,MYSQLI_NUM);
 			$_SESSION['username']=$row[0];
 			$_SESSION['name']=$row[2];
