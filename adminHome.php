@@ -18,13 +18,13 @@ if ($_SESSION['login']==false )
 	</head>
 	<body>
 		<div class="row" style="background:#2B8C67;">
-			<p align="center" style="font-size:25px;padding-top:5px;color:white;">Store Page</p>
+			<p align="center" style="font-size:25px;padding-top:5px;color:white;">Admin Home</p>
 		</div>
 		<div class="row">
 			<div class="col l4 s12"><p style="color:#2B8C67;font-size:20px;">Welcome Admin: <?php echo $_SESSION['name']?></p>
 			</div>
 			<div class="col l4 s12"></div>
-			<div class="col l4 s12"><a class="waves-effect waves-light btn" href="logout.php">Logout</a></div>
+			<div class="col l4 s12" align="right"><a class="waves-effect waves-light btn" href="logout.php" >Logout</a></div>
 		</div>
 		 
 		<div class="row">
@@ -33,7 +33,7 @@ if ($_SESSION['login']==false )
 		 	<div class="col l3 s12">
 		        <div class="card hoverable">
 				    <div class="card-image waves-effect waves-block waves-light">
-				      <img class="activator" src="images/office.jpg" >
+				      <a href="loanRegister.php"><img class="activator" src="images/loan_register.jpg" width="100px" height="200px"></a>
 				    </div>
 
 				    <div class="card-content">
@@ -46,7 +46,7 @@ if ($_SESSION['login']==false )
       		<div class="col l3 s12">
 		        <div class="card hoverable">
 				    <div class="card-image waves-effect waves-block waves-light">
-				      <img class="activator" src="images/office.jpg" >
+				      <a href="adminPurchase.php"><img class="activator" src="images/7-Purchase-Request.jpg" width="100px" height="200px"></a>
 				    </div>
 
 				    <div class="card-content">
@@ -63,7 +63,7 @@ if ($_SESSION['login']==false )
       		<div class="col l3 s12">
 		        <div class="card hoverable">
 				    <div class="card-image waves-effect waves-block waves-light">
-				      <img class="activator" src="images/office.jpg" >
+				      <a href="viewStore.php"><img class="activator" src="images/store.jpg" width="100px" height="200px" ></a>
 				    </div>
 
 				    <div class="card-content">
@@ -75,7 +75,7 @@ if ($_SESSION['login']==false )
       		<div class="col l3 s12">
 		        <div class="card hoverable">
 				    <div class="card-image waves-effect waves-block waves-light">
-				      <img class="activator" src="images/office.jpg" >
+				      <a href="adminApprove.php"><img class="activator" src="images/email-receive.png" width="100px" height="200px"></a>
 				    </div>
 
 				    <div class="card-content">

@@ -41,13 +41,14 @@ if ($count!=0){
 
 	<body>
 		<div class="row" style="background:#2B8C67;">
-			<p align="center" style="font-size:25px;padding-top:5px;color:white;">Store Page</p>
+			<p align="center" style="font-size:25px;padding-top:5px;color:white;">Home</p>
 		</div>
 		<div class="row">
 			<div class="col l4 s12"><p style="color:#2B8C67;font-size:20px;">Welcome : <?php echo $_SESSION['name']?></p>
 			<p style="color:#2B8C67;font-size:20px;">Balance(in Rs.) : <?php echo $_SESSION['balance']?></p>
 			</div>
-			<div class="col l4 s12">
+			<div class="col l4"></div>
+			<div class="col l4 s12" align="right">
 				<button data-target="modal1" class="btn">Notifications</button>
 				<div id="modal1" class="modal">
 			  	<!-- Modal content -->
@@ -73,8 +74,10 @@ if ($count!=0){
 				    </form> 
 				  </div>
 				</div>
+			
+			<div class="row" style="margin-top:20px;" salign="right"><a class="waves-effect waves-light btn" href="logout.php">Logout</a>
 			</div>
-			<div class="col l4 s12"><a class="waves-effect waves-light btn" href="logout.php">Logout</a></div>
+			</div>
 		</div>
 
 		<div class="row">
@@ -83,7 +86,7 @@ if ($count!=0){
 		 	<div class="col l3 s12">
 		        <div class="card hoverable">
 				    <div class="card-image waves-effect waves-block waves-light">
-				      <img class="activator" src="images/office.jpg" >
+				      <a href="userLoanReg.php"><img class="activator" src="images/loan_register.jpg" width="100px" height="200px"></a>
 				    </div>
 
 				    <div class="card-content">
@@ -96,7 +99,7 @@ if ($count!=0){
       		<div class="col l3 s12">
 		        <div class="card hoverable">
 				    <div class="card-image waves-effect waves-block waves-light">
-				      <img class="activator" href="purchase.php" src="images/office.jpg" >
+				      <a href="purchase.php"><img class="activator" href="purchase.php" src="images/7-Purchase-Request.jpg" width="100px" height="200px"></a>
 				    </div>
 				    <div class="card-content">
 				      <span class="card-title activator grey-text text-darken-4" align="center"><a href="purchase.php" style="color:#2B8C67;"><b>Purchase</b></a></span>
@@ -112,8 +115,8 @@ if ($count!=0){
       		<div class="col l3 s12" style="margin-left:25px;">
       			<div class="card hoverable">
 				    <div class="card-image waves-effect waves-block waves-light">
-				      <img class="activator" src="images/office.jpg" >
-				    </div>
+				      <a href="requestUnderProcess.php"><img class="activator" src="images/modules_wlists.png" width="100px" height="200px">
+				    </div></a>
 
 				    <div class="card-content">
 				      <span class="card-title activator grey-text text-darken-4" align="center"><a href="requestUnderProcess.php" style="color:#2B8C67;"><b>Pending Requests</b></a></span>

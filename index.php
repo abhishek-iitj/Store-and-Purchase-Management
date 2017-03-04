@@ -50,9 +50,12 @@ if (isset($_POST['xsub'])){
 	</head>
 	<body>
 		<div class="row" style="background:#2B8C67;">
-			<p align="center" style="font-size:25px;padding-top:10px;color:white;">IIT Jodhpur Store Department</p>
+			<p align="center" style="font-size:25px;padding-top:10px;color:white;">Store and Purchase Department</p>
 		</div>
-		<div class="row" style="margin-left:20%; ">
+		<div class="row">
+		<p align="center" style="color:#2B8C67;font-size:25px;">Login</p>
+		</div>
+		<div class="row" style="margin-left:40%; ">
 			<?php if(!empty($xlogm)) echo $xlogm; ?><br>
 			<form method="POST">
 				<div class="row">
@@ -76,8 +79,8 @@ if (isset($_POST['xsub'])){
 						  </select>
 	        		</div>
         		</div> -->
-        		<div class="row">
-          			<input value="submit" name="xsub" type="submit" class="waves-effect waves-light btn">
+        		<div class="row" style="margin-left:9%; ">
+          			<button class="waves-effect waves-light btn"><input value="submit" name="xsub" type="submit" ></button>
         		</div>
 			</form>
 		</div>	

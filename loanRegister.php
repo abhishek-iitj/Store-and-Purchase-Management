@@ -13,12 +13,19 @@ if ($_SESSION['login']==false )
 		<!-- Compiled and minified JavaScript -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>  
 		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script type="text/javascript" src="js/materialize.min.js"></script>
+      	<script type="text/javascript" src="js/materialize.min.js"></script>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       
 	</head>
 	<body>
 		<div class="row" style="background:#2B8C67;">
-			<p align="center" style="font-size:25px;padding-top:5px;color:white;">Store Page</p>
+			<p align="center" style="font-size:25px;padding-top:5px;color:white;">Loan Register</p>
+		</div>
+		<div class="row">
+		<div class="col l4"></div>
+		<div class="col l6"></div>
+			<div class="col l2"><a href="adminHome.php" style="color:#2B8C67;"> <i class="medium material-icons">home</i></a></div>
+		</div>	
 		</div>
 		<div class="container"> 
 

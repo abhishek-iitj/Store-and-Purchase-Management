@@ -74,14 +74,14 @@ if (isset($_POST['xsub'])) {
 	</head>
 	<body style="margin:0px;padding:0px;">
 		<div class="row" style="background:#2B8C67;">
-			<p align="center" style="font-size:25px;padding-top:5px;color:white;">Store Page</p>
+			<p align="center" style="font-size:25px;padding-top:5px;color:white;">Purchase Request</p>
 		</div>
 		<div class="row">
 			<div class="col l4 s12"><p style="color:#2B8C67;font-size:20px;">Welcome : <?php echo $_SESSION['name']?></p>
 			<p style="color:#2B8C67;font-size:20px;">Balance(in Rs.) : <?php echo $_SESSION['balance']?></p>
 			</div>
-			<div class="col l4"></div>
-			<div class="col l4"><a href="home.php" style="color:#2B8C67;"> <i class="medium material-icons">home</i></a></div>
+			<div class="col l6"></div>
+			<div class="col l2"><a href="home.php" style="color:#2B8C67;"> <i class="medium material-icons">home</i></a></div>
 
 		</div>
 		<div class="container">

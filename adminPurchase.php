@@ -17,6 +17,7 @@
 		$res1=mysqli_query($connect,$qry2) or die("Error in fire inside function");
 		$arr=mysqli_fetch_array($res1,MYSQLI_NUM);
 		$price1=$arr[1]*$qty1;
+		//$purchaseObj=$storeAdmin->purchase_item($item1, $qty1, $price1, "pradhan.1");
 		$PurchaseObj=new Purchase($item1, $qty1, $price1, "pradhan.1", true);//admin=pradhan.1
 		$storeAdmin->purchase_item($connect,$PurchaseObj);
 
@@ -43,14 +44,19 @@
 	  	<script type="text/javascript">
 	  		$(document).ready(function() {$('select').material_select();});
 	  	</script>
+	  	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 	</head>
 	<body style="margin:0px;padding:0px;">
 		<div class="row" style="background:#2B8C67;">
-			<p align="center" style="font-size:25px;padding-top:5px;color:white;">Store Page</p>
+			<p align="center" style="font-size:25px;padding-top:5px;color:white;">Purchase Items</p>
 		</div>
 		<div class="row">
 			<div class="col l4 s12"><p style="color:#2B8C67;font-size:20px;">Welcome : <?php echo $_SESSION['name']?></p>
 			</div>
+			<div class="col l6"></div>
+			<div class="col l2"><a href="adminHome.php" style="color:#2B8C67;"> <i class="medium material-icons">home</i></a></div>
+
 		</div>
 		<div class="container">
 			<p style="color:#2B8C67;font-size:20px;">Purchase Specification Form<a style="color:#2B8C67;font-size:15px;">&nbsp(One item at a time)</a></p>
