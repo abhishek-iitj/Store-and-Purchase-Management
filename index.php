@@ -80,7 +80,8 @@ if (isset($_POST['xsub'])){
 	        		</div>
         		</div> -->
         		<div class="row" style="margin-left:9%; ">
-          			<button class="waves-effect waves-light btn"><input value="submit" name="xsub" type="submit" ></button>
+          			
+        		<a class="waves-effect waves-light btn" href="logout.php"><input value="submit" name="xsub" type="submit" ></a>
         		</div>
 			</form>
 		</div>	
